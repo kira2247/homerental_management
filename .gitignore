@@ -69,8 +69,7 @@ next-env.d.ts
 # Project progress and requirements
 PROGRESS.md
 requirements.md
-.windsurfrules
-.cursorrules
+
 
 # Files containing test passwords and seed data
 server/prisma/seed.ts
