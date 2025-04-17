@@ -1,0 +1,63 @@
+{
+  "name": "house-management",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "npm run dev:web",
+    "dev:web": "npm run dev -w apps/web",
+    "build": "npm run build:web",
+    "build:web": "npm run build -w apps/web",
+    "start": "npm run start:web",
+    "start:web": "npm run start -w apps/web",
+    "lint": "npm run lint:web",
+    "lint:web": "npm run lint -w apps/web",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,md}\"",
+    "format:web": "npm run format -w apps/web"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "packageManager": "npm@10.2.3",
+  "devDependencies": {
+    "@nestjs/cli": "^11.0.5",
+    "@prisma/client": "^6.5.0",
+    "@types/bcrypt": "^5.0.2",
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.13.11",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "nodemon": "^3.1.9",
+    "prettier": "^3.5.3",
+    "prisma": "^6.5.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
+  },
+  "dependencies": {
+    "@nestjs/common": "^11.0.12",
+    "@nestjs/config": "^4.0.1",
+    "@nestjs/core": "^11.0.12",
+    "@nestjs/platform-express": "^11.0.12",
+    "@radix-ui/react-dialog": "^1.1.6",
+    "@radix-ui/react-dropdown-menu": "^2.1.6",
+    "@radix-ui/react-icons": "^1.3.2",
+    "@radix-ui/react-select": "^2.1.6",
+    "@radix-ui/react-separator": "^1.1.3",
+    "@radix-ui/react-toast": "^1.2.6",
+    "@types/cookie-parser": "^1.4.8",
+    "bcrypt": "^5.1.1",
+    "chart.js": "^4.4.8",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "cookie-parser": "^1.4.7",
+    "lucide-react": "^0.485.0",
+    "react-chartjs-2": "^5.3.0",
+    "react-spinners": "^0.15.0",
+    "tailwind-merge": "^3.0.2"
+  }
+}

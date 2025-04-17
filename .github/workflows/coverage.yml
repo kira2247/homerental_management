@@ -1,0 +1,56 @@
+name: Code Coverage
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  coverage:
+    name: Code Coverage Report
+    runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        working-directory: server
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: server/package-lock.json
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Generate Prisma client
+        run: npm run prisma:generate
+        
+      - name: Run tests with coverage
+        run: npm run test:cov
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/testdb
+          JWT_SECRET: test_jwt_secret
+          REFRESH_SECRET: test_refresh_secret
+          CLOUDINARY_CLOUD_NAME: test_cloud_name
+          CLOUDINARY_API_KEY: test_api_key
+          CLOUDINARY_API_SECRET: test_api_secret
+          SUPABASE_URL: test_supabase_url
+          SUPABASE_KEY: test_supabase_key
+          GOOGLE_CLIENT_ID: test_google_client_id
+          GOOGLE_CLIENT_SECRET: test_google_client_secret
+          GOOGLE_REFRESH_TOKEN: test_google_refresh_token
+          GOOGLE_EMAIL: test_google_email
+      
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          directory: ./server/coverage
+          fail_ci_if_error: false
+          verbose: true 
